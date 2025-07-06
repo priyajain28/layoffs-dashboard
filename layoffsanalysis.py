@@ -55,9 +55,14 @@ st.markdown("### 🏭 Chart 3: Top Industries by Total Layoffs (Year-wise)\n\nTh
 industry_year = df_clean.groupby(['Year', 'Industry'])['# Laid Off'].sum().reset_index()
 top_industries = industry_year.groupby('Industry')['# Laid Off'].sum().nlargest(10).index
 filtered_industry_year = industry_year[industry_year['Industry'].isin(top_industries)]
-fig3 = px.bar(filtered_industry_year, x='Industry', y='# Laid Off', color='Year',
-              title="Top Industries by Total Layoffs (Year-wise)", barmode='group', text='# Laid Off')
-fig3.update_traces(textposition='outside')
+fig3 = px.bar(
+    filtered_industry_year,
+    x='Industry',
+    y='# Laid Off',
+    color='Year',
+    title="Top Industries by Total Layoffs (Year-wise)",
+    barmode='group'
+)
 st.plotly_chart(fig3)
 
 # Chart 4: Layoffs by Country Year-wise
@@ -67,9 +72,14 @@ st.markdown("### 🌍 Chart 4: Top Countries by Total Layoffs (Year-wise)\n\nThi
 country_year = df_clean.groupby(['Year', 'Country'])['# Laid Off'].sum().reset_index()
 top_countries = country_year.groupby('Country')['# Laid Off'].sum().nlargest(10).index
 filtered_country_year = country_year[country_year['Country'].isin(top_countries)]
-fig4 = px.bar(filtered_country_year, x='Country', y='# Laid Off', color='Year',
-              title="Top Countries by Total Layoffs (Year-wise)", barmode='group', text='# Laid Off')
-fig4.update_traces(textposition='outside')
+fig4 = px.bar(
+    filtered_country_year,
+    x='Country',
+    y='# Laid Off',
+    color='Year',
+    title="Top Countries by Total Layoffs (Year-wise)",
+    barmode='group'
+)
 st.plotly_chart(fig4)
 
 # Chart 5: Yearly Layoff Trend
